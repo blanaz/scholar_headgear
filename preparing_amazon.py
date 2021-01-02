@@ -219,10 +219,10 @@ import pickle
 with open('df_train', 'rb') as f: 
     df_train = pickle.load(f)
 
-df_train.to_json('df_train.json', orient='records', lines=True)
+df_train.to_json('df_train_usef.json', orient='records', lines=True)
 
 
 with open('df_test', 'rb') as f: 
     df_test = pickle.load(f)
 
-df_test.to_json('df_test.json', orient='records', lines=True)
+df_test.to_json('df_test_usef.json', orient='records', lines=True)
