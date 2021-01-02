@@ -190,3 +190,39 @@ df.drop(index_leftover_spanish, inplace = True)
 
 #saving data
 df.to_csv(path_or_buf='C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\cleaned_data.csv')
+
+#--------------SPLIT THE DATA INTO TEST AND TRAIN--------------------------------
+len(data_words_nostops)
+# STEP 1: insert data_words_nostops (preprocessed, tokenized data) list elements into each row of the df
+df.insert(5,'preproc_text', value=data_words_nostops)
+print(df.preproc_text)
+
+#STEP 2: train-test split
+from sklearn.model_selection import train_test_split
+df_train, df_test= train_test_split(df, test_size=0.20, stratify=None, random_state=42)
+
+# %%
+#----------------------LET'S PICKLE THE TRAIN AND TEST SETS---------------------------------------
+#saving test
+with open('df_test', 'wb') as f: 
+    pickle.dump(df_test, f) 
+
+#saving train
+with open('df_train', 'wb') as f: 
+    pickle.dump(df_train, f) 
+    
+
+#---------------SAVE FILES IN JSON FORMAT----------------------------------
+import json
+import pickle
+
+with open('df_train', 'rb') as f: 
+    df_train = pickle.load(f)
+
+df_train.to_json('df_train.json', orient='records', lines=True)
+
+
+with open('df_test', 'rb') as f: 
+    df_test = pickle.load(f)
+
+df_test.to_json('df_test.json', orient='records', lines=True)
