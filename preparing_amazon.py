@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 import io
 
-untouched=pd.read_csv('C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\DATA_ALL.csv')
 df = pd.read_csv('C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\DATA_ALL.csv')
 df(head)
 
@@ -153,7 +152,6 @@ df = df.drop('comment', axis = 1)
 #df.to_csv(path_or_buf='C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\df_fixed_language.csv')
 
 
-# when doing topic modeling on Kam's computer on the 1st of dec
 # we realized that there's still some spanish in there, so let's run the language detect again
 #df = pd.read_csv('C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\df.csv')
 
@@ -191,4 +189,4 @@ df.drop(index_leftover_spanish, inplace = True)
 
 
 #saving data
-df.to_csv(path_or_buf='C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\df_fixed_language.csv')
+df.to_csv(path_or_buf='C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\cleaned_data.csv')
