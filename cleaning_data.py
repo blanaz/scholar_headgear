@@ -6,7 +6,6 @@ import pandas as pd #pandas for dataframes
 import numpy as np #numpy for numpy lists
 
 #%% reading the data in
-untouched=pd.read_csv('/Users/Blanka/Desktop/NLP/NLP_exam/fm_2/data/DATA_RAW.csv')
 df = pd.read_csv('/Users/Blanka/Desktop/NLP/NLP_exam/fm_2/data/DATA_RAW.csv')
 df.head()
 #removing the unnamed column
@@ -117,7 +116,6 @@ df = df.drop('comment', axis = 1)
 
 #%%
 #-----------------------------Language detection one more time again to exclude even more spanish reviews that have not been excluded yet
-# when doing topic modeling on Kam's computer on the 1st of dec
 # we realized that there's still some spanish in there, so let's run the language detect again
 
 df = df.drop('lang', axis = 1)
