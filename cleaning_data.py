@@ -108,13 +108,6 @@ df = df.drop('lang',axis=1)
 #df = df.drop('Unnamed: 0.1', axis = 1)
 
 #%%
-#----------------------------Merging the titles and the reviews
-df["text"] = df["title"] + df["comment"]
-#dropping original not merged
-df = df.drop('title',axis=1)
-df = df.drop('comment', axis = 1)
-
-#%%
 #-----------------------------Language detection one more time again to exclude even more spanish reviews that have not been excluded yet
 # we realized that there's still some spanish in there, so let's run the language detect again
 
@@ -142,20 +135,46 @@ index_leftover_spanish = [7086]
 df.drop(index_leftover_spanish, inplace = True)
 
 #saving data
-df.to_csv(path_or_buf='C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\data_cleaned.csv')
+#df.to_csv(path_or_buf='C:\\Users\\blank\\OneDrive\\Dokumentumok\\CogsciMaster\\NLP\\Exam\\scraping\\theone\\data\\data_cleaned.csv')
 
+#%%
+#----------------------------Merging the titles and the reviews
+df["text"] = df["title"] + df["comment"]
+#dropping original not merged
+df = df.drop('title',axis=1)
+df = df.drop('comment', axis = 1)
+
+#df['text'] = df['text'].str.lower() #lowercasing, not needed cause it's in scholar's preproc pipeline
+
+#add id column
+df.insert(loc=0, column='id', value=np.arange(len(df))) 
+
+#%%
+#--------------------plot distribution of usefulness------------------------
+import matplotlib.pyplot as plt
+#df['usefulness'] = np.log(df['usefulness'])
+pd.DataFrame.hist(df, column='usefulness')
+subset= df[df['usefulness']!= 0]
+#subset['usefulness'] = np.log(subset['usefulness'])
+pd.DataFrame.hist(subset, column='usefulness')
+
+subset= subset[subset['usefulness']!= 1]
+subset['usefulness'] = np.log(subset['usefulness'])
+pd.DataFrame.hist(subset, column='usefulness')
+
+#%%
+#changing usefulness into a binary factor (0=no votes, 1=any >0 votes)
+df.loc[(df.usefulness > 0), 'usefulness'] = 1
+
+#%%
 #--------------SPLIT THE DATA INTO TEST AND TRAIN--------------------------------
-len(data_words_nostops)
-# STEP 1: insert data_words_nostops (preprocessed, tokenized data) list elements into each row of the df
-df.insert(5,'preproc_text', value=data_words_nostops)
-print(df.preproc_text)
 
-#STEP 2: train-test split
 from sklearn.model_selection import train_test_split
 df_train, df_test= train_test_split(df, test_size=0.20, stratify=None, random_state=42)
 
 # %%
 #----------------------LET'S PICKLE THE TRAIN AND TEST SETS---------------------------------------
+import pickle
 #saving test
 with open('df_test', 'wb') as f: 
     pickle.dump(df_test, f) 
@@ -167,7 +186,6 @@ with open('df_train', 'wb') as f:
 
 #---------------SAVE FILES IN JSON FORMAT----------------------------------
 import json
-import pickle
 
 with open('df_train', 'rb') as f: 
     df_train = pickle.load(f)
