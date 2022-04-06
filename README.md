@@ -20,4 +20,7 @@ Note: To reproduce this or set up a similar project: follow their installation i
 ## Data collection and description
 We chose three brands for each disposable, reusable facemasks, and faceshields from https://www.amazon.com/ (US) among the most popular ones based on the amount of reviews they had.
 For each we created a parser (spider) to crawl through the pages and fetch data (9 script in total), see Scraping_example_spider.py for the faceshield brand, Sunzel.
-Datasets were merged while adding variables of brand (brand name) and type (disp, reus., shields). This dataset can be found in this repository as DATA_RAW.csv. Description of the chosen brands: chosen_products.pdf
+Datasets were merged while adding variables of brand (brand name) and type (disp, reus., shields). This dataset can be found in this repository as DATA_RAW.csv. Description of the chosen brands:
+![data_description](/chosen_products.png)
+
+
