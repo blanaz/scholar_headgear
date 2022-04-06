@@ -1,5 +1,4 @@
 # scholar_headgear
-NLP course exam:
 Protective Headgear: What do people talking about when reviewing products in the context of COVID-19?
 
 ## Purpose and overview
@@ -12,8 +11,8 @@ Thus, we chose the SCHOLAR  (Sparse Contextual Hidden and Observed Language Auto
 
 ## Tools
 
-Data was collected through webscraping using [Scrapy](https://scrapy.org/)
-Topic modeling was conducted using [Scholar](https://github.com/dallascard/scholar)
+- Data was collected through webscraping using [Scrapy](https://scrapy.org/)
+- Topic modeling was conducted using [Scholar](https://github.com/dallascard/scholar)
 
 Note: To reproduce this or set up a similar project: follow their installation instructions
 
@@ -35,15 +34,15 @@ Then train and test dataset transformed into json files for modeling: df_train.j
 
 ### Preprocessing and modeling (file: scholar_facegear.ipynb)
 Preprocessing with Scholar: cleaning text from nonalphabetical characters, lowercasing, tokenizing, and stopwords removal (snowball)
--- min doc count: 4, minimum times a word has to appear across documents to be included
--- label: type,brand,star_rating,usefulness - metadata, creating a 'postings list' with document indices and binary variable where it belongs
--- keep alphanum True: keep words with numbers and letters mixed in it
--- test ft_test.json : precprocessing the test and train sets simulatiosuly
+- -- min doc count: 4, minimum times a word has to appear across documents to be included
+- -- label: type,brand,star_rating,usefulness - metadata, creating a 'postings list' with document indices and binary variable where it belongs
+- -- keep alphanum True: keep words with numbers and letters mixed in it
+- -- test ft_test.json : precprocessing the test and train sets simulatiosuly
 outputs of the preprocessing and background frequency distributions across documents, topics, and words (for both train and test): preproc_output/
 
 2 models were chosen to analyze and compare based on perplexity, coherence, and most importantly qualitative interpretation (whether topics made sense):
--- model without metadata: exploration of meaningful topics across metadata
--- model with metadata: type as label, star_rating as a covariate and as an interaction with type --> these specific inclusions of variables were informed by the relationships we saw in the model without metadata:
+- -- model without metadata: exploration of meaningful topics across metadata
+- -- model with metadata: type as label, star_rating as a covariate and as an interaction with type --> these specific inclusions of variables were informed by the relationships we saw in the model without metadata:
 how topics are distributed across metadata classes and what makes sense in interpretation, e.g. that some types are more liked than others - interaction effect of sentiment (star rating) and type, some topics are more positively than negatively charged, topics are indicative of type of headgear which has also been the goal of our project
 
 Outputs of modeling: output_without_metadata/, output_with_metadata/
