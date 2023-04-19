@@ -1,5 +1,5 @@
 # scholar_headgear
-Protective Headgear: What do people talking about when reviewing products in the context of COVID-19?
+Protective Headgear: What do people talk about when reviewing products in the context of COVID-19?
 
 ## Purpose and overview
 
@@ -69,5 +69,5 @@ The present project is built upon this amazing work:
 Dallas Card, Chenhao Tan, and Noah A. Smith. Neural Models for Documents with Metadata. In Proceedings of ACL (2018)
 
 ### Cite this
-Barrett, K. N., Palfi, B. S., Zana, B. (2020). Protective Headgear: What do people talking about when reviewing products in the context of COVID-19?. [Unpublished]. Department of Linguistics, Cognitive Science and Semiotics, Aarhus University.
+Barrett, K. N., Palfi, B. S., Zana, B. (2020). Protective Headgear: What do people talk about when reviewing products in the context of COVID-19?. [Unpublished]. Department of Linguistics, Cognitive Science and Semiotics, Aarhus University.
 
